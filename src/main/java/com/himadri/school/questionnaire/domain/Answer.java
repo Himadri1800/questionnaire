@@ -21,15 +21,15 @@ public class Answer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    Long id;
+    private Long id;
 
-    String answer;
+    private String answer;
 
-    Boolean isArchived;
+    private Boolean isArchived;
 
-    ZonedDateTime createdOn;
+    private ZonedDateTime createdOn;
 
-    ZonedDateTime updatedOn;
+    private ZonedDateTime updatedOn;
 
     @PrePersist
     public void prePersist(){

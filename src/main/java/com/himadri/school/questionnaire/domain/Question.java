@@ -1,13 +1,11 @@
 package com.himadri.school.questionnaire.domain;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -19,29 +17,42 @@ import java.util.Set;
 @Setter
 @Data
 @Entity
+@EqualsAndHashCode(exclude = {"answers", "correctAnswers"})
 @Table( name = "question")
 public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    Long id;
+    private Long id;
 
     @NonNull
-    String questionName;
+    private String questionName;
 
     @NonNull
-    String question;
+    private String question;
 
-    Set<Answer> answers;
+    @OneToMany
+    @JoinTable(
+            name = "question_answer",
+            joinColumns = @JoinColumn(name = "question_id"),
+            inverseJoinColumns = @JoinColumn(name = "answer_id")
+    )
+    private Set<Answer> answers = new HashSet<>();
 
-    Set<Answer> correctAnswers;
+    @OneToMany
+    @JoinTable(
+            name = "question_correct",
+            joinColumns = @JoinColumn(name = "question_id"),
+            inverseJoinColumns = @JoinColumn(name = "answer_id")
+    )
+    private Set<Answer> correctAnswers = new HashSet<>();
 
-    ZonedDateTime createdOn;
+    private ZonedDateTime createdOn;
 
-    ZonedDateTime modifiedOn;
+    private ZonedDateTime modifiedOn;
 
     @Where(clause = "is_archived = false")
-    Boolean isArchived;
+    private Boolean isArchived;
 
     @PrePersist
     public void prePersist(){

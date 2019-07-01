@@ -20,20 +20,26 @@ import java.util.Set;
 public class TestSheet {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    Long id;
+    private Long id;
 
     @NonNull
-    String TestName;
+    private String TestName;
 
-    String Description;
+    private String Description;
 
-    Set<Question> questions;
+    @OneToMany
+    @JoinTable(
+            name = "test_question",
+            joinColumns = @JoinColumn(name = "test_id"),
+            inverseJoinColumns = @JoinColumn(name = "question_id")
+    )
+    private Set<Question> questions;
 
-    ZonedDateTime createdOn;
+    private ZonedDateTime createdOn;
 
-    ZonedDateTime updateOn;
+    private ZonedDateTime updateOn;
 
-    TestType testType;
+    private TestType testType;
 
     @PrePersist
     public void prePersist(){

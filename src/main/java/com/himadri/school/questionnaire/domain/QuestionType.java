@@ -16,15 +16,15 @@ public class QuestionType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    Long id;
+    private Long id;
 
-    String type;
+    private String type;
 
-    String description;
+    private String description;
 
-    ZonedDateTime createdOn;
+    private ZonedDateTime createdOn;
 
-    ZonedDateTime updatedOn;
+    private ZonedDateTime updatedOn;
 
     @PrePersist
     public void prepersist(){
