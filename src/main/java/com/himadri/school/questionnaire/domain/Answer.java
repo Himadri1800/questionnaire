@@ -16,6 +16,7 @@ import java.util.Date;
 @Setter
 @Data
 @Entity
+@Table( name = "answer")
 public class Answer {
 
     @Id
@@ -26,18 +27,20 @@ public class Answer {
 
     Boolean isArchived;
 
-    Date createdOn;
+    ZonedDateTime createdOn;
 
     ZonedDateTime updatedOn;
 
     @PrePersist
     public void prePersist(){
-        //todo update the ZonedateTime
+        ZonedDateTime zonedDateTime = ZonedDateTime.now();
+        this.setCreatedOn(zonedDateTime);
     }
 
     @PreUpdate
     public void preUpdate(){
-        //todo update the zonedatetime
+        ZonedDateTime zonedDateTime = ZonedDateTime.now();
+        this.setUpdatedOn(zonedDateTime);
     }
 
 }

@@ -19,6 +19,7 @@ import java.util.Set;
 @Setter
 @Data
 @Entity
+@Table( name = "question")
 public class Question {
 
     @Id
@@ -44,12 +45,14 @@ public class Question {
 
     @PrePersist
     public void prePersist(){
-        //todo
+        ZonedDateTime zonedDateTime = ZonedDateTime.now();
+        this.setCreatedOn(zonedDateTime);
     }
 
     @PreUpdate
     public void preUpdate(){
-        //todo update zonedatetime
+        ZonedDateTime zonedDateTime = ZonedDateTime.now();
+        this.setModifiedOn(zonedDateTime);
     }
 
 }

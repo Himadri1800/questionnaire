@@ -1,41 +1,50 @@
 package com.himadri.school.questionnaire.domain;
 
-import lombok.Data;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
+import java.util.Set;
+
+/**
+ * @author Himadri
+ * This will the sample test paper where one can create its own sets of questions.
+ */
 
 @Getter
 @Setter
-@Data
 @Entity
-@Table(name = "question_type")
-public class QuestionType {
-
+@Table(name = "test")
+public class TestSheet {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
 
-    String type;
+    @NonNull
+    String TestName;
 
-    String description;
+    String Description;
+
+    Set<Question> questions;
 
     ZonedDateTime createdOn;
 
-    ZonedDateTime updatedOn;
+    ZonedDateTime updateOn;
+
+    TestType testType;
 
     @PrePersist
-    public void prepersist(){
+    public void prePersist(){
         ZonedDateTime zonedDateTime = ZonedDateTime.now();
         this.setCreatedOn(zonedDateTime);
     }
 
     @PreUpdate
-    public void preUpdate(){
+    public  void preUpdate(){
         ZonedDateTime zonedDateTime = ZonedDateTime.now();
-        this.setUpdatedOn(zonedDateTime);
+        this.setUpdateOn(zonedDateTime);
     }
 
 }
