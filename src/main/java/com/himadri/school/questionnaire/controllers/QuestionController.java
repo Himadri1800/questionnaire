@@ -30,6 +30,11 @@ public class QuestionController {
     @Autowired
     private QuestionConverter questionConverter;
 
+    /**
+     * This is just testing will remove this one.
+     * todo remove the controller.
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET)
     public String testController(){
         return "ok";
@@ -47,7 +52,7 @@ public class QuestionController {
         return null;
     }
 
-    @RequestMapping( path = "/" ,method = RequestMethod.POST)
+    @RequestMapping( path = "/create" ,method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public QuestionDto addQuestion(@Valid @RequestBody QuestionDto questionDto){
