@@ -1,8 +1,6 @@
 package com.himadri.school.questionnaire.domain;
 
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
@@ -15,6 +13,9 @@ import java.util.Set;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Entity
 @Table(name = "test")
 public class TestSheet {

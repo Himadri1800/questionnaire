@@ -18,6 +18,8 @@ import java.util.Set;
 @Data
 @Entity
 @EqualsAndHashCode(exclude = {"answers", "correctAnswers"})
+@NoArgsConstructor
+@AllArgsConstructor
 @Table( name = "question")
 public class Question {
 

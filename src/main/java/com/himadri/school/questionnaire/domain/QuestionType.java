@@ -1,8 +1,6 @@
 package com.himadri.school.questionnaire.domain;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
@@ -10,6 +8,8 @@ import java.time.ZonedDateTime;
 @Getter
 @Setter
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "question_type")
 public class QuestionType {
