@@ -25,6 +25,8 @@ public class Answer {
 
     private String answer;
 
+    private AnswerStatus answerStatus;
+
     private Boolean isArchived;
 
     private ZonedDateTime createdOn;

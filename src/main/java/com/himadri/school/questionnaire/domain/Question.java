@@ -27,13 +27,12 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @NonNull
     private String questionName;
 
     @NonNull
     private String question;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "question_answer",
             joinColumns = @JoinColumn(name = "question_id"),
@@ -41,13 +40,7 @@ public class Question {
     )
     private Set<Answer> answers = new HashSet<>();
 
-    @OneToMany
-    @JoinTable(
-            name = "question_correct",
-            joinColumns = @JoinColumn(name = "question_id"),
-            inverseJoinColumns = @JoinColumn(name = "answer_id")
-    )
-    private Set<Answer> correctAnswers = new HashSet<>();
+    private QuestionStatus status;
 
     private ZonedDateTime createdOn;
 

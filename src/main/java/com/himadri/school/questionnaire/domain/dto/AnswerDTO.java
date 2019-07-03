@@ -1,38 +1,34 @@
 package com.himadri.school.questionnaire.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.himadri.school.questionnaire.domain.AnswerStatus;
+import lombok.*;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonView
-public class QuestionDto implements Serializable {
+public class AnswerDTO implements Serializable {
 
     @JsonView
     private Long id;
 
     @JsonView
-    private String questionName;
+    private String answer;
 
     @JsonView
-    private String question;
+    private AnswerStatus answerStatus;
 
     @JsonView
-    private Set<AnswerDTO> answers = new HashSet<>();
+    private Boolean isArchived;
 
     @JsonView
     private ZonedDateTime createdOn;
 
     @JsonView
-    private ZonedDateTime modifiedOn;
+    private ZonedDateTime updatedOn;
 }

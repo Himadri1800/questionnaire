@@ -16,8 +16,7 @@ public class QuestionService {
     QuestionRepository questionRepository;
 
     public Question createQuestion(Question question) {
-        questionRepository.save(question);
-        return null;
+        return questionRepository.save(question);
     }
 
     @Transactional
