@@ -32,7 +32,7 @@ public class QuestionController {
 
     /**
      * This is just testing will remove this one.
-     * todo remove the controller.
+     * todo remove the controller; make sure we also remove the test case from QuestionControllerTest.class
      * @return
      */
     @RequestMapping(method = RequestMethod.GET)
@@ -41,17 +41,23 @@ public class QuestionController {
     }
 
 
-    public Set<Question> getAllQuestion(){
-        //todo
+    @RequestMapping( path = "/list", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseBody
+    public Set<QuestionDto> getAllQuestion(){
+        //todo we have to make this as pagable and searchable and whatever required.
         return null;
     }
 
     public Set<Question> getAllQuestionByModule(){
-        //todo
-
+        //todo will try to club this with above function where using one param we can just decide what we are looking for.
         return null;
     }
 
+    /**
+     * @param questionDto
+     * @return QuestionDto with id, created on etc
+     */
     @RequestMapping( path = "/create" ,method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
@@ -62,15 +68,26 @@ public class QuestionController {
         return questionConverter.convertToDTO(createdQuestion);
     }
 
+    /**
+     * This will update any exsisting quesiton
+     * @param questionDto
+     * @return
+     * @throws OperationNotPosibleException
+     */
     @RequestMapping( path = "/update" , method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.ACCEPTED)
     @ResponseBody
     public QuestionDto updateQuestion(@Valid @RequestBody QuestionDto questionDto) throws OperationNotPosibleException {
         Question question = questionConverter.convertToEntity(questionDto);
         Question updatedQuestion = questionService.updateQuestion(question);
-        return null;
+        return questionConverter.convertToDTO(updatedQuestion);
     }
 
+    /**
+     * This will delete the questions
+     * @param id
+     * @throws OperationNotPosibleException
+     */
     @RequestMapping(path = "/delete/{id}" ,method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.ACCEPTED)
     @ResponseBody
