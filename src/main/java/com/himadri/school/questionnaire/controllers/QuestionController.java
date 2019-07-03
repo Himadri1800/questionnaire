@@ -65,6 +65,7 @@ public class QuestionController {
         Question question = questionConverter.convertToEntity(questionDto);
         Question createdQuestion = questionService.createQuestion(question);
 
+        log.info("Question created as ID : " + createdQuestion.getId());
         return questionConverter.convertToDTO(createdQuestion);
     }
 
@@ -80,6 +81,8 @@ public class QuestionController {
     public QuestionDto updateQuestion(@Valid @RequestBody QuestionDto questionDto) throws OperationNotPosibleException {
         Question question = questionConverter.convertToEntity(questionDto);
         Question updatedQuestion = questionService.updateQuestion(question);
+
+        log.info("Question updated as ID " + updatedQuestion.getId());
         return questionConverter.convertToDTO(updatedQuestion);
     }
 
@@ -91,8 +94,9 @@ public class QuestionController {
     @RequestMapping(path = "/delete/{id}" ,method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.ACCEPTED)
     @ResponseBody
-    public void deleteQuestion(@PathVariable Long id) throws OperationNotPosibleException{
-        questionService.deleteQuestion(id);
+    public QuestionDto deleteQuestion(@PathVariable Long id) throws OperationNotPosibleException{
+        Question question = questionService.deleteQuestion(id);
+        return questionConverter.convertToDTO(question);
     }
 
 }

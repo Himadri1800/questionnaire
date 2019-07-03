@@ -26,9 +26,9 @@ public class QuestionService {
     }
 
     @Transactional
-    public void deleteQuestion(Long id) throws OperationNotPosibleException {
+    public Question deleteQuestion(Long id) throws OperationNotPosibleException {
         Question questionToDelete = getQuestion(id);
-        archiveQuestion(questionToDelete);
+        return archiveQuestion(questionToDelete);
     }
 
     private Question getQuestion(Long id) throws OperationNotPosibleException{
@@ -39,8 +39,8 @@ public class QuestionService {
     }
 
 
-    private void archiveQuestion(Question question){
+    private Question archiveQuestion(Question question){
         question.setIsArchived(true);
-        questionRepository.save(question);
+        return questionRepository.save(question);
     }
 }
