@@ -1,6 +1,7 @@
 package com.himadri.school.questionnaire.domain;
 
 import lombok.*;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
@@ -35,6 +36,9 @@ public class QuestionModule {
             inverseJoinColumns = @JoinColumn(name = "question_id")
     )
     private Set<Question> questions = new HashSet<>();
+
+    @Where(clause = "is_archived = false")
+    private Boolean isArchived;
 
     private ZonedDateTime createdOn;
 
