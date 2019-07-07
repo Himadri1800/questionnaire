@@ -3,6 +3,7 @@ package com.himadri.school.questionnaire.domain.dto;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.himadri.school.questionnaire.domain.Question;
 import lombok.*;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
@@ -13,6 +14,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Accessors( chain = true)
 public class QuestionModuleDTO implements Serializable {
 
     @JsonView

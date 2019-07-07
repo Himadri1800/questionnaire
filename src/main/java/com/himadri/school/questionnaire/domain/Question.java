@@ -1,6 +1,7 @@
 package com.himadri.school.questionnaire.domain;
 
 import lombok.*;
+import lombok.experimental.Accessors;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ import java.util.Set;
 @EqualsAndHashCode(exclude = {"answers"})
 @NoArgsConstructor
 @AllArgsConstructor
+@Accessors(chain = true)
 @Table( name = "question")
 public class Question {
 

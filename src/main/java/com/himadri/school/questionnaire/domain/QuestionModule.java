@@ -1,6 +1,7 @@
 package com.himadri.school.questionnaire.domain;
 
 import lombok.*;
+import lombok.experimental.Accessors;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -18,6 +19,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Accessors( chain = true)
 @Table(name = "module")
 public class QuestionModule {
 
